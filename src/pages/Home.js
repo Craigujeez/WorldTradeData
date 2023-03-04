@@ -7,16 +7,15 @@ import { fetchCountries } from '../redux/actions/tradeActions';
 const Home = () => {
     const dispatch = useDispatch();
     const [query, setquery] = useState("");
-    const [filteredData, setFilteredData] = useState([]);
     const {Data} = useSelector(state => state.trade);
+    const [filteredData, setFilteredData] = useState(Data || []);
     const handleChange = (value) => setquery(value);
 
     useEffect(() => {
         if(Data.length < 1){
             fetchCountries()(dispatch);
         }
-        setFilteredData(Data);
-    }, [Data]);
+    }, []);
 
     useEffect(() => {
         if(query.length < 1){
@@ -26,7 +25,6 @@ const Home = () => {
             return setFilteredData(searchData);
         }
     }, [query])
-    
     
     return ( 
         <main className='bg-secondary pt-5 pb-10 h-screen'>
@@ -45,10 +43,10 @@ const Home = () => {
                 />
             </section>
             <section className='px-5 mt-10 flex flex-wrap justify-center overflow-y-scroll'>
-                {filteredData.length > 0 ? filteredData?.map(item => {
-                    if(item.Label){
+                {filteredData?.length > 0 ? filteredData?.map(item => {
+                    if(item['EN Label']){
                         return (
-                            <SearchItem item={item?.Label} id={item} />
+                            <SearchItem item={item['EN Label']} id={item} />
                         )
                     }
                 }) : (

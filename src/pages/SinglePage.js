@@ -12,7 +12,7 @@ const SinglePage = () => {
     return ( 
         <main className='bg-secondary  h-screen overflow-y-scroll'>
             <header className='bg-primary text-center p-10'>
-                <h1 className='text-white text-3xl font-bold'>{SelectedCountry[0]?.Label}</h1>
+                <h1 className='text-white text-3xl font-bold'>{SelectedCountry[0]['EN Label']}</h1>
             </header>
             <Link to="/">
                 <p className='text-sm text-primary underline leading-7 m-5 cursor-pointer'>Back</p>
