@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
@@ -7,20 +7,17 @@ import './index.css';
 import App from './App';
 import store from "./redux";
 import reportWebVitals from './reportWebVitals';
-import ContentLoader from './components/Loader';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
 
 root.render(
   <React.StrictMode>
-    <Suspense loading={<ContentLoader/>}> 
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
       </Provider>
-    </Suspense>
   </React.StrictMode>
 );
 

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Search from '../components/Search';
 import SearchItem from '../components/SearchItem';
 import { fetchCountries } from '../redux/actions/tradeActions';
+import ContentLoader from '../components/Loader';
 
 const Home = () => {
     const dispatch = useDispatch();
     const [query, setquery] = useState("");
-    const {Data} = useSelector(state => state.trade);
+    const {Data,loading} = useSelector(state => state.trade);
     const [filteredData, setFilteredData] = useState(Data || []);
     const handleChange = (value) => setquery(value);
 
@@ -21,7 +22,7 @@ const Home = () => {
         if(query.length < 1){
           return  setFilteredData(Data);
         } else if(query.length > 0){
-            const searchData = Data?.filter(item => item?.Label?.toLowerCase().includes(query.toLowerCase()));
+            const searchData = Data?.filter(item => item['EN Label']?.toLowerCase().includes(query.toLowerCase()));
             return setFilteredData(searchData);
         }
     }, [query])
@@ -43,13 +44,25 @@ const Home = () => {
                 />
             </section>
             <section className='px-5 mt-10 flex flex-wrap justify-center overflow-y-scroll'>
-                {filteredData?.length > 0 ? filteredData?.map(item => {
-                    if(item['EN Label']){
-                        return (
-                            <SearchItem item={item['EN Label']} id={item} />
-                        )
-                    }
-                }) : (
+                { loading ? 
+                    (<ContentLoader/>) : 
+                    filteredData?.length > 0 ? 
+                        filteredData?.map(item => {
+                            if(item['EN Label']){
+                                return (
+                                    <SearchItem item={item['EN Label']} id={item} />
+                                )
+                            }
+                        }) : 
+                    query.length < 1 && Data.length > 0 ? (
+                        Data?.map(item => {
+                            if(item['EN Label']){
+                                return (
+                                    <SearchItem item={item['EN Label']} id={item} />
+                                )
+                            }
+                        })
+                ) : (
                     <p className='pt-20 font-bold gb text-2xl text-center'>
                         Data Not Found
                     </p>

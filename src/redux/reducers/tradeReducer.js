@@ -1,9 +1,12 @@
-import { FETCH_COUNTRY_DATA, FETCH_COUNTRY_EXPORT_DATA, FETCH_COUNTRY_IMPORT_DATA } from "../types/tradeTypes";
+import { FETCH_COUNTRY_DATA, FETCH_COUNTRY_EXPORT_DATA, 
+    FETCH_COUNTRY_IMPORT_DATA, IS_LOADING_FALSE, IS_LOADING_TRUE 
+} from "../types/tradeTypes";
 
 const INITIAL_STATE = {
   Data: [],
   imports: [],
-  exports: []
+  exports: [],
+  loading: false
 };
 
 const TradeReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +25,16 @@ const TradeReducer = (state = INITIAL_STATE, action) => {
         return {
             ...state,
             exports: action.payload
+        }
+    case IS_LOADING_TRUE:
+        return{
+            ...state,
+            loading: true
+        }
+    case IS_LOADING_FALSE:
+        return{
+            ...state,
+            loading: false
         }
     default:
       return state;

@@ -14,6 +14,7 @@ export const fetchCountries = () => async (dispatch) => {
     if (response.data.data) {
       const { data } = response.data;
       dispatch({ type: FETCH_COUNTRY_DATA, payload: data });
+      dispatch({ type: IS_LOADING_FALSE });
       return 
     }
 
