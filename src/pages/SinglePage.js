@@ -15,9 +15,9 @@ const SinglePage = () => {
                 <h1 className='text-white text-3xl font-bold'>{SelectedCountry[0]['EN Label']}</h1>
             </header>
             <Link to="/">
-                <p className='text-sm text-primary underline leading-7 m-5 cursor-pointer'>Back</p>
+                <p className='text-sm text-primary underline leading-7 m-5 cursor-pointer px-10'>Back</p>
             </Link>
-            <section className='flex flex-wrap justify-center'>
+            <section className='flex flex-wrap justify-center px-10'>
                 <TradeCard
                     title="Import Data"
                     fetchedData={imports}

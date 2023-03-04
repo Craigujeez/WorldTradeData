@@ -1,9 +1,9 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { 
     IS_LOADING_TRUE, IS_LOADING_FALSE, FETCH_COUNTRY_IMPORT_DATA,
     FETCH_COUNTRY_DATA , FETCH_COUNTRY_EXPORT_DATA 
 } from "../types/tradeTypes";
-
 
 
 export const fetchCountries = () => async (dispatch) => {
@@ -17,9 +17,10 @@ export const fetchCountries = () => async (dispatch) => {
       dispatch({ type: IS_LOADING_FALSE });
       return 
     }
-
+    toast.error("oops... Something went wrong!");
   } catch (error) {
     // Set loading to false after endpoint call is not successful
+    toast.error("oops... Something went wrong!");
     dispatch({ type: IS_LOADING_FALSE });
     // handleError(error);
   }
@@ -35,9 +36,11 @@ export const fetchCountryImports = (id,year,setLoading) => async (dispatch) => {
         setLoading(false);
       return 
     }
+    toast.error("oops... Something went wrong!");
     setLoading(false);
   } catch (error) {
     // Set loading to false after endpoint call is not successful
+    toast.error("oops... Something went wrong!");
     setLoading(false);
     // handleError(error);
   }
@@ -53,9 +56,11 @@ export const fetchCountryExports = (id,year,setLoading) => async (dispatch) => {
       setLoading(false);
     return 
     }
+    toast.error("oops... Something went wrong!");
     setLoading(false);
   } catch (error) {
     // Set loading to false after endpoint call is not successful
+    toast.error("oops... Something went wrong!");
     setLoading(false);
     // handleError(error);
   }

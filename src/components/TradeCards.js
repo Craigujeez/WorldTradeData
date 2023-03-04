@@ -8,7 +8,7 @@ const TradeCard = ({title,fetchData,id,fetchedData}) => {
     const [year, setyear] = useState(2020);
     const [loading, setLoading] = useState(false);
     const yearData = [2020,2021,2022,2023];
-    
+
     const handleChange = (e) => {
         setyear(e.target.value);
         fetchData(id,e.target.value,setLoading)(dispatch);
@@ -19,7 +19,7 @@ const TradeCard = ({title,fetchData,id,fetchedData}) => {
     }, []);
     
     return ( 
-        <article className='w-5/12 max-w-xl min-w-350 p-5 rounded-md shadow-sm bg-white m-5 tablet:w-full'>
+        <article className=' p-5 rounded-md shadow-sm bg-white m-5 w-full'>
             <aside className='flex justify-between mb-4'>
                 <h1 className='pt-2 font-semibold gs text-lg text-primary'>{title}</h1>
                 <select className='p-2.5 border border-primary bg-secondary rounded-md' onChange={handleChange}>
