@@ -16,7 +16,7 @@ const Home = () => {
             fetchCountries()(dispatch);
         }
         setFilteredData(Data);
-    }, []);
+    }, [Data]);
 
     useEffect(() => {
         if(query.length < 1){
